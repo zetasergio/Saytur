@@ -1,0 +1,125 @@
+<ui:composition template="/resources/templates/home-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
+
+	<ui:define name="content">
+
+		<h:form id="form1" styleClass="contentFeature">
+
+			<ace:panel header="Gestionar Clientes">
+
+				<h:panelGroup>
+					<ace:dataTable id="dataTableClientes" value="#{clienteBean.clienteAll}"
+						var="_item">
+
+						<ace:column id="id">
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText id="clienteId" value="#{_item.id}" />
+						</ace:column>
+
+						<ace:column id="nombre">
+							<f:facet name="header">
+								<h:outputText value="Nombre" />
+							</f:facet>
+							<h:outputText id="clienteNombre" value="#{_item.nombre}" />
+						</ace:column>
+						
+						<ace:column id="telefonoFijo">
+							<f:facet name="header">
+								<h:outputText value="TelefonoFijo" />
+							</f:facet>
+							<h:outputText id="clienteTelefonoFijo" value="#{_item.telefonoFijo}" />
+						</ace:column>
+						
+						<ace:column id="telefonoCelular">
+							<f:facet name="header">
+								<h:outputText value="TelefonoCelular" />
+							</f:facet>
+							<h:outputText id="clienteTelefonoCelular" value="#{_item.telefonoCelular}" />
+						</ace:column>
+						
+						
+						
+						<ace:column id="direccionCasa">
+							<f:facet name="header">
+								<h:outputText value="DireccionCasa" />
+							</f:facet>
+							<h:outputText id="clienteDireccionCasa" value="#{_item.direccionCasa}" />
+						</ace:column>
+						
+						<ace:column id="email">
+							<f:facet name="header">
+								<h:outputText value="Email" />
+							</f:facet>
+							<h:outputText id="clienteEmail" value="#{_item.email}" />
+						</ace:column>
+
+						<ace:column id="acciones">
+							<f:facet name="header">
+
+									<h:commandButton id="idBtnAdd" styleClass="btn_s_add"
+										actionListener="#{clienteBean.addCliente}" type="button">
+										<f:ajax execute="@this" render="@all"/>
+									</h:commandButton>
+							</f:facet>
+
+							<h:commandButton styleClass="btn_s_editar"
+								onclick="ice.ace.instance('dialogCliente').hide();" type="button" />
+						</ace:column>
+					</ace:dataTable>
+				</h:panelGroup>
+			</ace:panel>
+
+		</h:form>
+
+	<h:form id="formDialog">
+		  	<h:panelGroup>
+				<!-- Sección del Popup para capturar los datos del Cliente -->
+				<ace:dialog id="dialogCliente" visible="#{clienteBean.visiblePopup}"
+					header="#{clienteBean.headerDialog}" draggable="true" modal="true"
+					width="400">
+	
+					<h:panelGrid>
+						
+						<ace:textEntry id="dialogClienteNombre" value="#{clienteBean.nombreCliente}" label="Nombre: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+							<ace:textEntry id="dialogClienteID" value="#{clienteBean.id}" label="ID: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogClienteTelefonoFijo" value="#{clienteBean.telefonoFijo}" label="TelefonoFijo: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogClienteTelefonoCelular" value="#{clienteBean.telefonoCelular}" label="TelefonoCelular: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogClienteDireccionCasa" value="#{clienteBean.direccionCasa}" label="DireccionCasa: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogClienteEmail" value="#{clienteBean.email}" label="Email: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+	
+						<ace:pushButton id="dialogClienteBtnGuardar"
+							action="#{clienteBean.saveAction}" label="Guardar">
+						</ace:pushButton>
+	
+					</h:panelGrid>
+				</ace:dialog>
+			</h:panelGroup>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

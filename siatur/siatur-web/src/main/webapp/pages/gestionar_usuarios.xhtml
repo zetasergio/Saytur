@@ -1,0 +1,163 @@
+<ui:composition template="/resources/templates/home-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
+
+	<ui:define name="content">
+
+		<h:form id="form1" styleClass="contentFeature">
+
+			<ace:panel header="Gestionar Usuarios">
+
+				<h:panelGroup>
+					<ace:dataTable id="dataTableUsuarios" value="#{usuarioBean.usuarioAll}"
+						var="_item">
+
+						<ace:column id="id">
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText id="usuarioId" value="#{_item.id}" />
+						</ace:column>
+						<ace:column id="Usuario">
+							<f:facet name="header">
+								<h:outputText value="Usuario" />
+							</f:facet>
+							<h:outputText id="userUsuario" value="#{_item.usuario}" />
+						</ace:column>
+						
+						<ace:column id="Contraseña">
+							<f:facet name="header">
+								<h:outputText value="Contraseña" />
+							</f:facet>
+							<h:outputText id="claveUsuario" value="#{_item.clave}" />
+						</ace:column>
+
+					<ace:column id="nombre">
+							<f:facet name="header">
+								<h:outputText value="Nombre" />
+							</f:facet>
+							<h:outputText id="usuarioNombre" value="#{_item.nombre}" />
+						</ace:column>
+						
+						<ace:column id="apellido">
+							<f:facet name="header">
+								<h:outputText value="Apellido" />
+							</f:facet>
+							<h:outputText id="usuarioApellido" value="#{_item.apellido}" />
+						</ace:column>
+						
+						<ace:column id="identificacion">
+							<f:facet name="header">
+								<h:outputText value="Identificacion" />
+							</f:facet>
+							<h:outputText id="usuarioIdentificacion" value="#{_item.identificacion}" />
+						</ace:column>
+
+						<ace:column id="Correo">
+							<f:facet name="header">
+								<h:outputText value="Correo" />
+							</f:facet>
+							<h:outputText id="usuarioCorreo" value="#{_item.correo}" />
+						</ace:column>
+						
+						<ace:column id="Direccion">
+							<f:facet name="header">
+								<h:outputText value="Direccion" />
+							</f:facet>
+							<h:outputText id="usuarioDireccion" value="#{_item.direccion}" />
+						</ace:column>
+						
+						
+						<ace:column id="estado">
+							<f:facet name="header">
+								<h:outputText value="Estado" />
+							</f:facet>
+							<h:outputText id="usuarioEstado" value="#{_item.estado}" />
+						</ace:column>
+
+						<ace:column id="acciones">
+							<f:facet name="header">
+
+								<h:commandButton id="idBtnAdd" styleClass="btn_s_add"
+									actionListener="#{usuarioBean.addUsuario}" type="button">
+									<f:ajax execute="@this" render="@all" />
+								</h:commandButton>
+							</f:facet>
+
+							
+							<h:commandButton id="idBtnEdit" styleClass="btn_s_editar"
+								rendered="#{_item.editable}" actionListener="#{usuarioBean.editUsuario}"
+								type="button">
+								<f:ajax execute="@this" render="@all" />
+							</h:commandButton>
+						</ace:column>
+					</ace:dataTable>
+				</h:panelGroup>
+			</ace:panel>
+		</h:form>
+
+		<h:form id="formDialog">
+		  	<h:panelGroup>
+				<!-- Sección del Popup para capturar los datos del Usuario -->
+				<ace:dialog id="dialogUsuario" visible="#{usuarioBean.visiblePopup}"
+					closable="false" header="#{usuarioBean.headerDialog}" draggable="true"
+					modal="true" width="400">
+	
+					<h:panelGrid>
+						
+						
+						<ace:textEntry id="dialogUserUsuario" value="#{usuarioBean.userUsuario}" label="Usuario: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogContraseñaUsuario" value="#{usuarioBean.contrasenaUsuario}" label="Contraseña: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogUsuarioNombre" value="#{usuarioBean.nombreUsuario}" label="Nombre: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogUsuarioApellido" value="#{usuarioBean.apellidoUsuario}" label="Apellido: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogUsuarioIdentificacion" value="#{usuarioBean.identificacionUsuario}" label="Identificacion: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						
+						<ace:textEntry id="dialogUsuarioCorreo" value="#{usuarioBean.correoUsuario}" label="Correo: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						
+						<ace:textEntry id="dialogUsuarioDireccion" value="#{usuarioBean.direccionUsuario}" label="Direccion: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogUsuarioEstado" value="#{usuarioBean.estadoUsuario}" label="Estado: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+
+						<ace:pushButton id="dialogUsuarioBtnGuardar"
+							action="#{usuarioBean.saveAction}" label="Guardar">
+						</ace:pushButton>
+						
+						<ace:pushButton id="dialogRolBtnCancelar"
+							action="#{usuarioBean.cancelAction}" label="Cancelar">
+						</ace:pushButton>
+						
+					</h:panelGrid>
+				</ace:dialog>
+			</h:panelGroup>
+		</h:form>
+
+	</ui:define>
+
+
+</ui:composition>

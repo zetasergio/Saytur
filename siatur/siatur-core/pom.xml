@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>siatur</artifactId>
+		<groupId>co.edu.uan</groupId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>..\pom.xml</relativePath>
+	</parent>
+	<artifactId>siatur-core</artifactId>
+	<groupId>co.edu.uan.siatur</groupId>
+	<packaging>jar</packaging>
+
+	<build>
+		<finalName>siatur-core</finalName>
+	</build>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<version>1.0.1.Final</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.ejb</groupId>
+			<artifactId>javax.ejb-api</artifactId>
+			<version>3.2</version>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+</project>

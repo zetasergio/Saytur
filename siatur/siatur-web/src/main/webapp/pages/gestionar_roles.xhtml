@@ -1,0 +1,89 @@
+<ui:composition template="/resources/templates/home-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
+
+	<ui:define name="content">
+
+		<h:form id="form1" styleClass="contentFeature">
+
+			<ace:panel header="Gestionar Roles">
+
+				<h:panelGroup>
+					<ace:dataTable id="dataTableRoles" value="#{rolBean.rolAll}"
+						var="_item">
+
+						<ace:column id="id">
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText id="rolId" value="#{_item.id}" />
+						</ace:column>
+
+						<ace:column id="nombre">
+							<f:facet name="header">
+								<h:outputText value="Nombre" />
+							</f:facet>
+							<h:outputText id="rolNombre" value="#{_item.nombre}" />
+						</ace:column>
+
+						<ace:column id="estado">
+							<f:facet name="header">
+								<h:outputText value="Estado" />
+							</f:facet>
+							<h:outputText id="rolEstado" value="#{_item.estado}" />
+						</ace:column>
+
+						<ace:column id="acciones">
+							<f:facet name="header">
+
+								<h:commandButton id="idBtnAdd" styleClass="btn_s_add"
+									actionListener="#{rolBean.addRol}" type="button">
+									<f:ajax execute="@this" render="@all" />
+								</h:commandButton>
+							</f:facet>
+
+							<h:commandButton id="idBtnEdit" styleClass="btn_s_editar"
+								rendered="#{_item.editable}" actionListener="#{rolBean.editRol}"
+								type="button">
+								<f:ajax execute="@this" render="@all" />
+							</h:commandButton>
+						</ace:column>
+					</ace:dataTable>
+				</h:panelGroup>
+			</ace:panel>
+		</h:form>
+
+		<h:form id="formDialog">
+			<h:panelGroup>
+				<!-- Sección del Popup para capturar los datos del Rol -->
+				<ace:dialog id="dialogRol" visible="#{rolBean.visiblePopup}"
+					closable="false" header="#{rolBean.headerDialog}" draggable="true"
+					modal="true" width="400">
+
+					<h:panelGrid>
+
+						<ace:textEntry id="dialogRolNombre" value="#{rolBean.nombreRol}"
+							label="Nombre: " labelPosition="left" required="true"
+							requiredIndicator="(*)">
+						</ace:textEntry>
+
+						<ace:pushButton id="dialogRolBtnGuardar"
+							action="#{rolBean.saveAction}" label="Guardar">
+						</ace:pushButton>
+						<ace:pushButton id="dialogRolBtnCancelar"
+							action="#{rolBean.cancelAction}" label="Cancelar">
+						</ace:pushButton>
+
+					</h:panelGrid>
+				</ace:dialog>
+			</h:panelGroup>
+		</h:form>
+
+	</ui:define>
+
+
+</ui:composition>

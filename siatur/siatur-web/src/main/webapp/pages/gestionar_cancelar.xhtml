@@ -1,0 +1,78 @@
+<ui:composition template="/resources/templates/home-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
+
+	<ui:define name="content">
+
+		<h:form styleClass="contentFeature">
+
+			<ace:panel header="Gestionar Cancelaciones">
+
+				<h:panelGroup>
+					<ace:dataTable id="dataTableCancelar" value="#{cancelarBean.cancelarAll}"
+						var="_item">
+
+						<ace:column id="id">
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText id="cancelarId" value="#{_item.id}" />
+						</ace:column>
+
+						<ace:column id="nombre">
+							<f:facet name="header">
+								<h:outputText value="Nombre" />
+							</f:facet>
+							<h:outputText id="cancelarNombre" value="#{_item.nombre}" />
+						</ace:column>
+
+						<ace:column id="estado">
+							<f:facet name="header">
+								<h:outputText value="Estado" />
+							</f:facet>
+							<h:outputText id="cancelarEstado" value="#{_item.estado}" />
+						</ace:column>
+
+						<ace:column id="acciones">
+							<f:facet name="header">
+
+								<h:commandButton id="idBtnAdd" styleClass="btn_s_add"
+									actionListener="#{cancelarBean.addCancelar}" type="button">
+									<f:ajax execute="@this" render="@all" />
+								</h:commandButton>
+							</f:facet>
+
+							<h:commandButton styleClass="btn_s_editar"
+								onclick="ice.ace.instance('dialogCancelar').hide();" type="button" />
+						</ace:column>
+					</ace:dataTable>
+				</h:panelGroup>
+			</ace:panel>
+
+			<!-- Sección del Popup para capturar los datos del Cancelar -->
+			<ace:dialog id="dialogCancelar" visible="#{cancelarBean.visiblePopup}"
+				header="#{cancelarBean.headerDialog}" draggable="true" modal="true"
+				width="400">
+
+				<h:panelGrid>
+
+					<ace:textEntry id="dialogCancelarNombre" value="#{cancelarBean.cancelar.nombre}" label="Nombre: "
+						labelPosition="left" required="true" requiredIndicator="(*)">
+					</ace:textEntry>
+
+					<ace:pushButton id="dialogCancelarBtnGuardar"
+						action="#{cancelarBean.saveAction}" label="Guardar">
+					</ace:pushButton>
+
+				</h:panelGrid>
+			</ace:dialog>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

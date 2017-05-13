@@ -1,0 +1,83 @@
+<ui:composition template="/resources/templates/home-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
+
+	<ui:define name="content">
+	
+		<h:form id="form1" styleClass="contentFeature">
+
+			<ace:panel header="Gestionar Requisitos">
+			
+				<h:panelGroup>
+					<ace:dataTable id="dataTableRequisitos" value="#{reqBean.reqAll}"
+						var="_item">
+
+						<ace:column id="id">
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText id="reqId" value="#{_item.id}" />
+						</ace:column>
+
+						<ace:column id="nombre">
+							<f:facet name="header">
+								<h:outputText value="Nombre" />
+							</f:facet>
+							<h:outputText id="reqNombre" value="#{_item.nombre}" />
+						</ace:column>
+
+						<ace:column id="descripcion">
+							<f:facet name="header">
+								<h:outputText value="Descripcion" />
+							</f:facet>
+							<h:outputText id="reqDescripcion" value="#{_item.descripcion}" />
+						</ace:column>
+
+						<ace:column id="acciones">
+							<f:facet name="header">
+
+								<h:commandButton id="idBtnAdd" styleClass="btn_s_add"
+									actionListener="#{reqBean.addReq}" type="button">
+									<f:ajax execute="@this" render="@all" />
+								</h:commandButton>
+							</f:facet>
+
+							<h:commandButton styleClass="btn_s_editar"
+								onclick="ice.ace.instance('dialogReq').hide();" type="button" />
+						</ace:column>
+					</ace:dataTable>
+				</h:panelGroup>
+			</ace:panel>
+
+		</h:form>
+		
+		<h:form id="formDialog">
+		  	<h:panelGroup>
+
+			<!-- Sección del Popup para capturar los datos del Req -->
+			<ace:dialog id="dialogReq" visible="#{reqBean.visiblePopup}"
+				header="#{reqBean.headerDialog}" draggable="true" modal="true"
+				width="400">
+
+				<h:panelGrid>
+
+					<ace:textEntry id="dialogReqNombre" value="#{reqBean.req.nombre}" label="Nombre: "
+						labelPosition="left" required="true" requiredIndicator="(*)">
+					</ace:textEntry>
+
+<!-- 					<ace:pushButton id="dialogReqBtnGuardar"
+						action="#{reqBean.saveAction}" label="Guardar">
+					</ace:pushButton> -->
+
+				</h:panelGrid>
+			</ace:dialog>
+			</h:panelGroup>
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

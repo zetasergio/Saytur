@@ -1,0 +1,95 @@
+<ui:composition template="/resources/templates/home-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
+
+	<ui:define name="content">
+
+		<h:form id="form1" styleClass="contentFeature">
+
+			<ace:panel header="Gestionar Temporadas">
+
+				<h:panelGroup>
+					<ace:dataTable id="dataTableTemporadas" value="#{temporadaBean.temporadaAll}"
+						var="_item">
+
+						<ace:column id="id">
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText id="temporadaId" value="#{_item.id}" />
+						</ace:column>
+
+						<ace:column id="fecha">
+							<f:facet name="header">
+								<h:outputText value="Fecha" />
+							</f:facet>
+							<h:outputText id="temporadaFecha" value="#{_item.fecha}" />
+						</ace:column>
+						
+						<ace:column id="clasificacion">
+							<f:facet name="header">
+								<h:outputText value="Clasificacion" />
+							</f:facet>
+							<h:outputText id="temporadaClasificacion" value="#{_item.clasificacion}" />
+						</ace:column>
+						
+						<ace:column id="acciones">
+							<f:facet name="header">
+
+								<h:commandButton id="idBtnAdd" styleClass="btn_s_add"
+									actionListener="#{temporadaBean.addTemporada}" type="button">
+									<f:ajax execute="@this" render="@all" />
+								</h:commandButton>
+							</f:facet>
+
+							
+						<h:commandButton id="idBtnEdit" styleClass="btn_s_editar"
+								rendered="#{_item.editable}" actionListener="#{temporadaBean.editUsuario}"
+								type="button">
+								<f:ajax execute="@this" render="@all" />
+							</h:commandButton>
+							
+						</ace:column>
+					</ace:dataTable>
+				</h:panelGroup>
+			</ace:panel>
+		</h:form>
+		
+		<h:form id="formDialog">
+		  	<h:panelGroup>
+				<!-- Sección del Popup para capturar los datos del Rol -->
+				<ace:dialog id="dialogTemporada" visible="#{temporadaBean.visiblePopup}"
+					closable="false" header="#{tempradaBean.headerDialog}" draggable="true"
+					modal="true" width="400">
+	
+					<h:panelGrid>
+						
+						<ace:textEntry id="dialogTemporadaFecha" value="#{temporadaBean.fechaTemporada}" label="Fecha: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+						
+						<ace:textEntry id="dialogTemporadaClasificacion" value="#{temporadaBean.clasificacionTemporada}" label="Clasificacion: "
+							labelPosition="left" required="true" requiredIndicator="(*)">
+						</ace:textEntry>
+	
+						<ace:pushButton id="dialogTemporadaBtnGuardar"
+							action="#{temporadaBean.saveAction}" label="Guardar">
+						</ace:pushButton>
+						
+						<ace:pushButton id="dialogRolBtnCancelar"
+							action="#{temporadaBean.cancelAction}" label="Cancelar">
+						</ace:pushButton>
+	
+					</h:panelGrid>
+				</ace:dialog>
+			</h:panelGroup>
+		</h:form>
+
+	</ui:define>
+
+
+</ui:composition>

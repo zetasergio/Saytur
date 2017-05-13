@@ -1,0 +1,174 @@
+/*******************************************************************************
+Estilos para la plantilla main-template
+*******************************************************************************/
+body {
+	margin: 0px;
+	padding: 0px;
+}
+
+body .ui-widget {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 0.8em;
+}
+
+.page {
+	display: flex;
+	display: -webkit-flex;
+	flex-flow: column wrap;
+	-webkit-flex-flow: column wrap;
+	-webkit-align-items: flex-start;
+	-ms-flex-align: start;
+	align-items: flex-start;
+	width: 100%;
+}
+
+.header {
+	background-color: #fff;
+	box-shadow: 0 3px 10px rgba(0, 0, 0, .25);
+	width: 100%;
+	min-height: 40px;
+	z-index: 1;
+	
+	display: flex;
+	display: -webkit-flex;
+
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+	
+    -webkit-flex-direction: row;
+    flex-direction: row;
+	
+}
+
+.header .logo {
+	width: 200px;
+	height: 100%;
+}
+
+.header .menu{
+	display: flex;
+	display: -webkit-flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-self: center;
+    align-self: center;	
+	
+	height: 100%;	
+}
+
+.menuContent{
+	
+}
+
+.header .usuario{
+	display: flex;
+	display: -webkit-flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -webkit-align-self: center;
+    align-self: center;	
+	
+	height: 100%;	
+	
+}
+
+.usuarioContent{
+	
+}
+
+.content {
+	background-color: #2a7cbb;
+	width: 100%;
+	min-height: 400px;
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer {
+	background-color: #3e4147;
+	width: 100%;
+	min-height: 40px;
+}
+
+form{
+	
+}
+
+/*******************************************************************************
+Estilos para login
+*******************************************************************************/
+.login {
+	display: flex;
+	display: -webkit-flex;
+	flex-flow: row wrap;
+	-webkit-flex-flow: row wrap;
+	align-items: center;
+	max-width: 50%;
+}
+
+.login .ui-widget {
+	font-family: Verdana, Arial, sans-serif;
+	font-size: 0.8em;
+}
+
+/*******************************************************************************
+Estilos para funcionalidades
+*******************************************************************************/
+.contentFeature{
+	width: 90%;
+	height: 90%;
+}
+
+
+
+/*******************************************************************************
+Estilos para los botones de acciones en el sistema
+*******************************************************************************/
+.ice-pushbutton .first-child button{
+	padding: 0.2em 0.2em;
+}
+
+.btn_s_add{
+    background-image:url(../img/btn_s_add.png);
+    background-repeat:no-repeat;
+    border:0 none;
+    height:19px;
+    vertical-align: middle;
+    width: 18px;
+    cursor:pointer;
+    background-color: transparent;
+}
+.btn_s_add-dis{
+    background-image:url(../img/btn_s_add_off.png);
+    background-repeat:no-repeat;
+    border:0 none;
+    height:19px;
+    width: 18px;
+    cursor:not-allowed;
+    background-color: transparent;
+}
+.btn_s_editar{
+    background-image:url(../img/btn_s_editar.png);
+    background-repeat:no-repeat;
+    border:0 none;
+    height:16px;
+    width: 16px;
+    cursor:pointer;
+    background-color: transparent;
+}
+.btn_s_editar-dis{
+    background-image:url(../img/btn_s_editar_off.png);
+    background-repeat:no-repeat;
+    border:0 none;
+    height:16px;
+    width: 16px;
+    cursor:not-allowed;
+    background-color: transparent;
+}

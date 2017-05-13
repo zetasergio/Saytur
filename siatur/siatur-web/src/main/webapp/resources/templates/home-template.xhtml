@@ -1,0 +1,75 @@
+<ui:composition template="/resources/templates/main-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
+
+	<ui:define name="menuBar">
+		<h:form>
+			<h:panelGroup styleClass="menuContent">
+
+				<ace:menuBar id="menubar" autoSubmenuDisplay="true">
+
+					<ace:submenu label="Configuración">
+
+						<ace:menuItem value="Gestionar Roles" action="gestionar_roles"></ace:menuItem>
+
+						<ace:menuItem value="Gestionar Usuarios"
+							action="gestionar_usuarios"></ace:menuItem>
+				
+						<ace:menuItem value="Gestionar Clientes"
+							action="gestionar_clientes"></ace:menuItem>
+							
+						<ace:menuItem value="Gestionar Requisitos"
+							action="gestionar_requisitos"></ace:menuItem>
+						
+
+					</ace:submenu>
+					
+					
+					<ace:submenu label="Temporadas">
+
+						<ace:menuItem value="Gestionar Temporadas"
+							action="gestionar_temporadas"></ace:menuItem>
+
+					</ace:submenu>
+					
+					<ace:submenu label="Reservas">
+
+						<ace:menuItem value="Crear "
+							action="gestionar_temporadas"></ace:menuItem>
+
+						<ace:menuItem value="Cancelar"
+							action="gestionar_cancelar"></ace:menuItem>
+
+					</ace:submenu>
+
+
+				</ace:menuBar>
+
+			</h:panelGroup>
+
+
+		</h:form>
+
+	</ui:define>
+
+	<ui:define name="usuario">
+		<h:form>
+			<h:panelGroup styleClass="usuarioContent">
+				<h:outputText
+					value="Bienvenido #{sessionBean.nombreCompletoUsuario} " /> <!-- (Última sesión:)  IP:  -->
+				<!-- <h:outputText value="this.nombre" /> -->
+				<!--<h:commandButton alt="Cambiar Clave" styleClass="btn_s_cambio_clave" action="correr" /> -->
+				<!-- <h:outputText value="   salir " /> -->
+				<h:commandButton alt="Salir" title="Salir" styleClass="btn_s_salir" value = "Cerrar sesión"
+					action="#{sessionBean.logout}" />
+			</h:panelGroup>
+
+			<ace:growlMessages id="allMsgsGrowl" autoHide="true" for="@inView"
+				closeAll="true" maxVisibleMessages="0" position="top-right" />
+		</h:form>
+	</ui:define>
+</ui:composition>

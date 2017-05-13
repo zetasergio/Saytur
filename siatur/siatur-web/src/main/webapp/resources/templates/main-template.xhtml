@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:icecore="http://www.icefaces.org/icefaces/core"
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
+
+<h:head>
+	<title id="title">#{msgs['siatur.title']}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="css/default.css" />
+</h:head>
+
+<h:body style="overflow-y: scroll;">
+
+	<h:panelGroup styleClass="page">
+
+		<h:panelGroup styleClass="header">
+
+			<h:panelGroup styleClass="logo">
+				<ace:graphicImage url="img/logoSiatur.png" height="50" />
+			</h:panelGroup>
+
+			<h:panelGroup styleClass="menu">
+				<ui:insert name="menuBar" />
+			</h:panelGroup>
+
+			<h:panelGroup styleClass="usuario">
+				<ui:insert name="usuario" />
+			</h:panelGroup>
+
+		</h:panelGroup>
+
+		<h:panelGroup styleClass="content">
+			
+				<ui:insert name="content">aqui va el contenido de la pagina</ui:insert>
+			
+		</h:panelGroup>
+
+		<h:panelGroup styleClass="footer">
+		<ace:graphicImage url="img/logoSiatur.png" height="50" />
+		</h:panelGroup>
+	</h:panelGroup>
+</h:body>
+
+</html>
